@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <nav id="sidebar" class="bg-white border-right">
+            <div class="sidebar-header">
+                <div class="d-flex flex-row flex-wrap dashboadName">
+                    <img src="./Logos/symbol.svg" />
+                    <p>Lodgify</p>
+                </div>
+            </div>
+            <ul class="nav flex-column" id="navList">
+            </ul>
+        </nav>
+
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <h4>Dashboard</h4>
+                <div class="ml-auto">
+                    <div class="d-flex justify-content-around gap-3 flex-wrap">
+                        <div>
+                            <div class="input-group d-flex dashboard-input">
+                                <span class="input-group-text" id="basic-addon1"><img src="./Logos/SearchIcon.svg"
+                                        </span>
+                                    <input type="text" class="form-control" placeholder="Search guest,status,etc"
+                                        aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <!-- <span>Jaylon Donvart - Admin</span>-->
+                        <img src="./Logos/Avatar.svg" alt="Profile Picture" class="rounded-circle" width="40">
+                        <div class="d-flex flex-column">
+                            <div class="adminName">Jaylon Dorwart</div>
+                            <div class="text-muted">Admin</div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <div class="globalIcons bg-white"><img src="./Logos/Gear.svg" alt="Settings"></div>
+                            <div class="globalIcons bg-white"><img src="./Logos/Bell.svg" alt="Notification"></div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="row mt-4">
+                <div class="mainContent col-xl-9 col-lg-12 col-md-12 col-sm-12">
+                    <div class="d-flex flex-row flex-wrap" id="card-row">
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="card p-3 room-details">
+                                <div class="d-flex justify-content-between px-4">
+                                    <span>
+                                        Room Availability
+                                    </span>
+                                    <span>...</span>
+                                </div>
+                                <div class="mt-3" id="room-availability">
+                                    <div class="progress-container mb-3" id="progress-container">
+                                    </div>
+                                    <div class="d-flex flex-column gap-2" id="room-details-main">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-12 col-sm-12">
+                            <div class="card p-3 revenue-chart reservation-details">
+                                <div class="d-flex justify-content-between px-4">   
+                                    <span>
+                                        Revenue
+                                    </span>
+                                    <p>Last 6 Months<img src="./Logos/Downarrow.svg" /></p>
+                                </div>
+                                <canvas id="revenue-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-lg-7 col-md-12 col-sm-12 reservations-card">
+                            <div class="card p-3 reservation-details">
+                                <div class="d-flex justify-content-between px-4">
+                                    <span>
+                                        Reservations
+                                    </span>
+                                    <p>Last 7 Days<img src="./Logos/Downarrow.svg" /></p>
+                                </div>
+                                <div>
+                                    <div class="chart-container">
+                                        <div class="d-flex gap-3 mb-2">
+                                            <div class="d-flex gap-2">
+                                                <div class="d-flex bg-div">
+                                                    <div class="color-dot" style="background-color:#D5F6E5;"></div>
+                                                </div>
+                                                <div>
+                                                    <span>Booked</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-2">
+                                                <div class="d-flex bg-div">
+                                                    <div class="color-dot" style="background-color:#E7F68E;"></div>
+                                                </div>
+                                                <div>
+                                                    <span>Cancelled</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <canvas id="splitBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-12 col-sm-12">
+                            <div class="card p-3 room-details">
+                                <div class="d-flex justify-content-between px-4">
+                                    <span>
+                                        Booking By Platform
+                                    </span>
+                                    <span>...</span>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <div class="Doughnut-chart">
+                                        <canvas id="doughnut-chart"></canvas>
+                                    </div>
+                                    <div id="chart-content" class="d-flex flex-column">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card p-3">
+                                <div class="d-flex justify-content-between px-4 booking-list">
+                                    <span>
+                                        Booking List
+                                    </span>
+                                    <div class="d-flex gap-2 booking-search-dropdown">
+                                        <div class="input-group d-flex">
+                                            <span class="input-group-text" id="basic-addon1"><img
+                                                    src="./Logos/SearchIcon.svg" </span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Search guest,status,etc" aria-label="Username"
+                                                    aria-describedby="basic-addon1">
+                                        </div>
+                                        <p>All Status<img src="./Logos/Downarrow.svg" /></p>
+                                    </div>
+                                </div>
+                                <div class="table-responsive-sm table-responsive-md table-responsive-lg mt-3">
+                                    <table class="table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>Booking ID<img src="./Logos/Sort.svg" /></th>
+                                                <th>Guest Name<img src="./Logos/Sort.svg" /></th>
+                                                <th>Room Type<img src="./Logos/Sort.svg" /></th>
+                                                <th>Room Number<img src="./Logos/Sort.svg" /></th>
+                                                <th>Duration<img src="./Logos/Sort.svg" /></th>
+                                                <th>Check-in & Check-out<img src="./Logos/Sort.svg" /></th>
+                                                <th>Status<img src="./Logos/Sort.svg" /></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="booking-list"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap flex-column col-lg-3 col-md-3 col-sm-3 custom-col">
+                    <div class="bg-white rigthContent1">
+                        <div class="d-flex justify-content-between px-4">
+                            <span>
+                                Overall Rating
+                            </span>
+                            <span>...</span>
+                        </div>
+                        <div class="mt-4" id="rating-main">
+                            <div class="d-flex align-items-center rating-container px-4">
+                                <div class="rating-badge">
+                                    <span class="rating-number">4.6</span><span class="rating-total">/5</span>
+                                </div>
+                                <div class="ms-3 rating-text">
+                                    <p class="mb-0">Impressive</p>
+                                    <small class="text-muted">from 2546 reviews</small>
+                                </div>
+                            </div>
+                            <div class="d-flex px-4 mt-3 gap-5" id="rating-individual">
+                                <div class="d-flex flex-column gap-2" id="rating-names">
+                                </div>
+                                <div class="d-flex flex-column gap-2" id="rating-value">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rightContent2">
+                        <div class="d-flex justify-content-between px-4">
+                            <span>
+                                Tasks
+                            </span>
+                            <span class="plusButton">+</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <div id="stepper-boxes">
+                            </div>
+                            <div id="stepper-content-main">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rightContent3">
+                        <div class="d-flex justify-content-between px-4">
+                            <span>
+                                Recent Activities
+                            </span>
+                            <span>...</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <div id="stepper-circles">
+                            </div>
+                            <div id="stepper-content-main-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 mb-4 d-flex justify-content-between footer-main flex-wrap">
+                <div class="footer d-flex gap-3">
+                    <span style="font-weight: 600;color:#6E6E6E">Copyright © 2024 Lodgify</span>
+                    <span>Privacy Policy</span>
+                    <span>Term and conditions</span>
+                    <span>Contact</span>
+                </div>
+                <div class="footer d-flex gap-3">
+                    <img src="./Logos/FacebookLogo.svg" />
+                    <img src="./Logos/TwitterLogo.svg" />
+                    <img src="./Logos/YoutubeLogo.svg" />
+                    <img src="./Logos/LinkedinLogo.svg" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
